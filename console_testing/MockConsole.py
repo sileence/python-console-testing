@@ -1,5 +1,5 @@
-from consoletests.ConsoleExpectation import ConsoleExpectation
-from consoletests.Console import Console
+from console_testing.ConsoleExpectation import ConsoleExpectation
+from console_testing.Console import Console
 
 class MockConsole(Console):
     def __init__(self):

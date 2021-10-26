@@ -1,7 +1,7 @@
 
 
 from consoletests.Console import Console
-from consoletests.Console import Console
+from console_testing.Console import Console
 
 class BasicConsole(Console):
     def print(self, message):

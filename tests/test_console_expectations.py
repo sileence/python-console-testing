@@ -1,7 +1,4 @@
-import sys
-sys.path.append("..")
- 
-from consoletests.MockConsole import MockConsole
+from console_testing.MockConsole import MockConsole
 
 def test_verifies_an_input_expectation():
     test_console = MockConsole()
