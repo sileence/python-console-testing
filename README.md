@@ -28,9 +28,9 @@ console.ask('A question') # equivalent of input('A question')
 
 The mock console class is another implementation of `Console` that you can use when running your tests.
 
-However, when using a `MockConsole` object, you need to define the messages and questions that you expect before calling `print` and `ask`, otherwise an `AssertionError` will be raised, causing your tests to fail.
+However, when using a `MockConsole` object, you need to define the messages and questions that you **expect** before calling `print` and `ask`, otherwise an `AssertionError` will be raised, causing your tests to fail.
 
-In this way you can ensure that your script is working correctly within the context of a unit test.
+In this way, you can ensure that your script is working correctly within the context of a unit test.
 
 For example:
 
@@ -44,12 +44,16 @@ console.expect_message('A message')
 console.expect_question('A question', 'An answer')
 
 console.print('A message') # equivalent of print('A message')
-console.ask('A question') # equivalent of input('A question')
+answer = console.ask('A question') # equivalent of input('A question')
+
+print(answer) # Would print "An answer"
 
 console.assert_expectations_met()
 ```
 
-Notice how we first expect the message "A message" and then we expect the question "A question". Then we proceed to printing and asking those messages in the expected order - An `AssertionError` will be triggered if we call them in the wrong order.
+Notice how we first expect the message "A message" and then we expect the question "A question". Then we proceed to print and ask those messages in the expected order - An `AssertionError` will be triggered if we call them in the wrong order.
+
+Also, when we expect a question we can pass the answer that we want the question to return.
 
 At the end, we can call `console.assert_expectations_met()` to verify all the expected messages and questions were called.
 
