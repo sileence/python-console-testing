@@ -18,7 +18,7 @@ Instead of using `print()` and `input()`, you will use the `print` and `ask` met
 
 The basic console class is a very simple implementation of `Console` that will forward any call to the normal `print()` and `input()` Python functions:
 
-```
+```python
 console = BasicConsole()
 console.print('A message') # equivalent of print('A message')
 console.ask('A question') # equivalent of input('A question')
@@ -34,7 +34,7 @@ In this way, you can ensure that your script is working correctly within the con
 
 For example:
 
-```
+```python
 console = MockConsole()
 
 # Expects that the console would print the message "A message"
@@ -68,7 +68,7 @@ I advice you to "encapsulate" your scripts in a class or a function and then pas
 
 A function (in our example, `my_script`) will have the logic of your script as you'd normally write it, with the only difference that you will call `console.print` and `console.ask` instead of `print()` and `input()`.
 
-```
+```python
 from console_testing import BasicConsole, MockConsole
 
 def my_script(console): 
@@ -103,7 +103,7 @@ The class `MyCommand` has 2 methods:
 - `__init__` is the constructor that we will use to pass and set the console in the `console` property.
 - `handle` will have the logic of your script as you'd normally write it, with the only difference that you will call `self.console.print` and `self.console.ask` instead of `print()` and `input()`.
 
-```
+```python
 from console_testing import BasicConsole, MockConsole
 
 # Define the class MyCommand that will hold the logic of the script
