@@ -1,6 +1,3 @@
-
-
-from consoletests.Console import Console
 from console_testing.Console import Console
 
 class BasicConsole(Console):
