@@ -24,4 +24,6 @@ class MockConsole(Console):
         return self.expectations.pop(0).assert_matches(message_type, message)
 
     def assert_expectations_met(self):
-        assert len(self.expectations) == 0
+        expectation_text = 'expectation' if len(self.expectations) == 1 else 'expectations'
+
+        assert len(self.expectations) == 0, f"All the message expectations were not met. Missing {len(self.expectations)} {expectation_text}."
