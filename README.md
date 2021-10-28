@@ -43,8 +43,11 @@ console.expect_message('A message')
 # Expect that the console would print the question "A question" and return the answer "An answer"
 console.expect_question('A question', 'An answer')
 
-console.print('A message') # equivalent of print('A message')
-answer = console.ask('A question') # equivalent of input('A question')
+# Now when we call print() and ask() in the MockConsole object. The Mock Console won't print anything
+# Instead, it will only verify the expectations we set before. If they're correct, no errors will
+# be raised. If they are wrong then an AssertionError will be raised and the test will fail.
+console.print('A message')
+answer = console.ask('A question')
 
 print(answer) # Would print "An answer"
 
@@ -66,7 +69,7 @@ I advice you to "encapsulate" your scripts in a class or a function and then pas
 
 ### Example with function
 
-A function (in our example, `my_script`) will have the logic of your script as you'd normally write it, with the only difference that you will call `console.print` and `console.ask` instead of `print()` and `input()`.
+A function (in our example, `my_script`) will have the logic of your script as you'd normally write it, with the only difference that you will call `console.print()` and `console.ask()` instead of `print()` and `input()`.
 
 ```python
 from console_testing import BasicConsole, MockConsole
@@ -76,12 +79,12 @@ def my_script(console):
     name = console.ask("What's your name? ")
     console.print(f"Welcome to Python, {name}")
 
-# Using My Command with a BasicConsole Object will run basic print() and input() calls.
+# Calling my_script with a BasicConsole Object will print messages and request data to the user.
 basic_console = BasicConsole()
 
 my_script(basic_console)
 
-# Using My Command with a MockConsole Object won't output anything to the console,
+# Calling my_script with a MockConsole Object won't output anything to the console,
 # instead it will verify expectations for print() and input() function calls,
 # so you can easily write integration tests for simple console programs.
 mock_console = MockConsole()
