@@ -1,3 +1,6 @@
+from contextlib import contextmanager
+from unittest.mock import patch
+
 from console_testing.ConsoleExpectation import ConsoleExpectation
 from console_testing.Console import Console
 
@@ -27,3 +30,9 @@ class MockConsole(Console):
         expectation_text = 'expectation' if len(self.expectations) == 1 else 'expectations'
 
         assert len(self.expectations) == 0, f"All the message expectations were not met. Missing {len(self.expectations)} {expectation_text}."
+
+    @contextmanager
+    def all_expectations_met(self):
+        with patch.multiple('builtins', print=self.print, input=self.ask):
+            yield self
+        self.assert_expectations_met()
