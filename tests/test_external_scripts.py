@@ -31,3 +31,9 @@ def mock_console():
 def test_simple_script(scripts_in_path, mock_console):
     with mock_console.all_expectations_met():
         import simple_script
+
+
+def test_script_with_main(scripts_in_path, mock_console):
+    with mock_console.all_expectations_met():
+        from script_with_main import main
+        main()
