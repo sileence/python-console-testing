@@ -5,10 +5,7 @@ from console_testing import MockConsole
 
 @pytest.fixture
 def mock_console():
-    console = MockConsole()
-    console.expect_question("What's your name? ", "Bob")
-    console.expect_message("Hello, Bob")
-    return console
+    return MockConsole.from_iterable([["What's your name? ", "Bob"], ["Hello, Bob"]])
 
 
 def test_context_manager_passes_if_all_expectations_met(mock_console):

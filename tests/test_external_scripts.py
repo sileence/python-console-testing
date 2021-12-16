@@ -18,14 +18,15 @@ def scripts_in_path():
 
 @pytest.fixture
 def mock_console():
-    console = MockConsole()
-    console.expect_question("Your name: ", "George")
-    console.expect_message("Hello, George.")
-    console.expect_question("What is 2**10? ", "64")
-    console.expect_message("wrong")
-    console.expect_question("What is 2**10? ", "1024")
-    console.expect_message("correct")
-    return console
+    expectations = [
+        ["Your name: ", "George"],
+        ["Hello, George."],
+        ["What is 2**10? ", "64"],
+        ["wrong"],
+        ["What is 2**10? ", "1024"],
+        ["correct"],
+    ]
+    return MockConsole.from_iterable(expectations)
 
 
 def test_simple_script(scripts_in_path, mock_console):

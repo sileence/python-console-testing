@@ -36,3 +36,13 @@ class MockConsole(Console):
         with patch.multiple('builtins', print=self.print, input=self.ask):
             yield self
         self.assert_expectations_met()
+
+    @classmethod
+    def from_iterable(cls, iterable):
+        console = cls()
+        for item in iterable:
+            if len(item) == 1:
+                console.expect_message(*item)
+            elif len(item) == 2:
+                console.expect_question(*item)
+        return console
